@@ -1,15 +1,13 @@
 <%-include("partials/header")%>
     <h1 class="text-center mt-3">Combinatorial Calculator</h1>
-    <form action="/function-relation" method="POST">
+    <form action="/numbers" method="POST">
         <div class="ml-3 mt-3">
-            <label for="inputA">|A|=m=</label>
-            <input id="inputA" type="number" name="input[A]" min="1" value="1" max ="170" required>
-            <label for="inputB">|B|=n=</label>
-            <input id="inputB" type="number" name="input[B]" min="0" max ="170" required>
+            <label for="inputN">N=</label>
+            <input id="inputN" type="number" name="input[N]" min="0" value="1" max ="170" required>
         </div>
 
         <div class="ml-3 mt-3">
-            <!-- Second table - Chap5 -->
+            <!-- Third table - Numbers -->
             <table class="table">
                 <thead class="thead-light">
                     <tr>
@@ -23,49 +21,41 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th>| A x B |</th>
-                        <%if(crossResult){%>
-                             <td><%=crossResult%></td>
+                        <th>Catalan Numbers</th>
+                        <%if(catalanResult!=null){%>
+                             <td><%=catalanResult%></td>
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
                     </tr>
                     <tr>
-                        <th>Relation from A to B</th>
-                        <%if(relationResult){%>
-                             <td><%=relationResult%></td>
+                        <th>Triangular Numbers</th>
+                        <%if(triangularResult!=null){%>
+                             <td><%=triangularResult%></td>
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
                     </tr>
                     <tr>
-                        <th>One to One</th>
-                        <%if(oneToOne!=null){%>
-                             <td><%=oneToOne%></td>
+                        <th>Harmonic Numbers</th>
+                        <%if(harmonicResult!=null){%>
+                             <td><%=harmonicResult%></td>
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
                     </tr>
                     <tr>
-                        <th>Onto functions</th>
-                        <%if(ontoResult!=null){%>
-                             <td><%=ontoResult%></td>
+                        <th>Fibonacci Numbers</th>
+                        <%if(fibonacciResult!=null){%>
+                             <td><%=fibonacciResult%></td>
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
                     </tr>
                     <tr>
-                        <th>S(m,n)</th>
-                        <%if(stirlingResult!=null){%>
-                             <td><%=stirlingResult%></td>
-                        <%}else{%>
-                                <td>...</td>
-                         <%}%>
-                    </tr>
-                    <tr>
-                        <th>Eulerian Number A(m,n)</th>
-                        <%if(eulaResult!=null){%>
-                             <td><%=eulaResult%></td>
+                        <th>Lucas Numbers</th>
+                        <%if(lucasResult!=null){%>
+                             <td><%=lucasResult%></td>
                         <%}else{%>
                                 <td>...</td>
                          <%}%>

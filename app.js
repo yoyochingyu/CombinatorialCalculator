@@ -20,6 +20,16 @@ app.use("/function-relation",(req,res,next)=>{
     res.locals.oneToOne = oneToOne;
     res.locals.ontoResult = ontoResult;
     res.locals.stirlingResult = stirlingResult;
+    res.locals.eulaResult = eulaResult;
+    next();
+})
+
+app.use("/numbers",(req,res,next)=>{
+    res.locals.catalanResult = catalanResult;
+    res.locals.triangularResult = triangularResult;
+    res.locals.harmonicResult = harmonicResult;
+    res.locals.fibonacciResult = fibonacciResult;
+    res.locals.lucasResult = lucasResult;
     next();
 })
 
@@ -27,7 +37,8 @@ app.use("/function-relation",(req,res,next)=>{
 var N,R;
 var A,B;
 var permutationResult=combinationResult=arrangeResult =selectResult =   null;
-var crossResult  = relationResult =oneToOne =ontoResult =stirlingResult =  null;
+var crossResult  = relationResult =oneToOne =ontoResult =stirlingResult =eulaResult =  null;
+var catalanResult  = triangularResult =harmonicResult =fibonacciResult =lucasResult =  null;
 
 function factorial(n){
     if(n==0 || n==1){
@@ -49,8 +60,6 @@ function permutation(N,R){
 function combination(N,R){
     let den = factorial(N);
     let num = factorial(R)*factorial(N-R);
-    console.log(den);
-    console.log(num);
     return den/num;
 }
 
@@ -60,6 +69,50 @@ function onto(A,B){
         onto+=(Math.pow(-1,i))*combination(B,B-i)*Math.pow(B-i,A);
     }
     return onto;
+}
+
+function eula(A,B){
+    let eulaResult = 0;
+    for(let i=0;i<=B;i++){
+        eulaResult+=(Math.pow(-1,i))*combination(A+1,i)*Math.pow(B+1-i,A);
+    }
+    return eulaResult;
+}
+
+function triangular(N){
+    let triangularResult = 0;
+    for(let i=1;i<=N;i++){
+        triangularResult+=i;
+    }
+    return triangularResult;
+}
+
+function harmonic(N){
+    let harmonicResult= 0;
+    for(let i=1;i<=N;i++){
+        harmonicResult+=(1/i);
+    }
+    return harmonicResult;
+}
+
+function fibonacci(N){
+    if(N==0){
+        return 0;
+    }
+    if(N==1|| N==2){
+        return 1;
+    }
+    return fibonacci(N-1)+fibonacci(N-2);
+}
+
+function lucas(N){
+    if(N==0){
+        return 2;
+    }
+    if(N==1){
+        return 1;
+    }
+    return lucas(N-1)+lucas(N-2);
 }
 
     app.get("/",(req,res)=>{
@@ -99,9 +152,28 @@ function onto(A,B){
             ontoResult = onto(A,B);
             stirlingResult = ontoResult/factorial(B);
         }
+        if(A-1>=B>=0){
+            eulaResult = eula(A,B);
+        }else{
+            eulaResult = 0;
+        }
 
         res.redirect("/function-relation");
     });
+
+    app.get("/numbers",(req,res)=>{
+        res.render("numbers");
+    });
+
+    app.post("/numbers",(req,res)=>{
+        N = parseInt(req.body.input.N);
+        catalanResult = combination(2*N,N)/(N+1);
+        triangularResult = triangular(N);
+        harmonicResult = harmonic(N);
+        fibonacciResult = fibonacci(N);
+        lucasResult = lucas(N);
+        res.redirect("/numbers");
+    })
 
 
     app.listen(8000,()=>{
