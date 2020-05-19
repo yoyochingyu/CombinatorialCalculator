@@ -1,0 +1,62 @@
+<%-include("partials/header")%>
+    <h1 class="text-center mt-3">Combinatorial Calculator</h1>
+    <form action="/" method="POST">
+        <div class="ml-3 mt-3">
+            <label for="inputN">N=</label>
+            <input id="inputN" type="number" name="input[N]" min="1" value="1" max ="170" required>
+            <label for="inputR">R=</label>
+            <input id="inputR" type="number" name="input[R]" min="0" max ="170" required>
+        </div>
+
+        <div class="ml-3 mt-3">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Formula</th>
+                        <th scope="col">Result</th>
+                        <th scope="col">Button</th>
+                        <th scope="col">Order relevant</th>
+                        <th scope="col">Repetition</th>
+                        <th scope="col">Memo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>P(n,r)</th>
+                        <%if(permutationResult){%>
+                             <td> <%=permutationResult%></td>
+                        <%}else{%>
+                                <td>...</td>
+                         <%}%>
+                    </tr>
+                    <tr>
+                        <th>C(n,r)</th>
+                        <%if(combinationResult){%>
+                             <td> <%=combinationResult%></td>
+                        <%}else{%>
+                                <td>...</td>
+                         <%}%>
+                    </tr>
+                    <tr>
+                        <th>n<sup>r</sup></th>
+                        <%if(arrangeResult){%>
+                             <td> <%=arrangeResult%></td>
+                        <%}else{%>
+                                <td>...</td>
+                         <%}%>
+                    </tr>
+                    <tr>
+                        <th>C(r+n-1,r)</th>
+                        <%if(selectResult){%>
+                             <td> <%=selectResult%></td>
+                        <%}else{%>
+                                <td>...</td>
+                         <%}%>
+                    </tr>
+                </tbody>
+            </table>
+                <input type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+<%-include("partials/footer")%>
