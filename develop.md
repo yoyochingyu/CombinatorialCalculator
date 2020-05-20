@@ -8,6 +8,7 @@
 
 ### Feture
 1. 相容於不同尺寸的螢幕
+2. landing page(用jumbotrun作)
 
 -----
 fib+lucas已檢查0

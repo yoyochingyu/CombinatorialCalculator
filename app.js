@@ -6,13 +6,14 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.set("view engine","ejs");
 
+// Pass varaibles into view(index)
 app.use("/",(req,res,next)=>{
     res.locals.permutationResult = permutationResult;
     res.locals.combinationResult = combinationResult;
     res.locals.arrangeResult = arrangeResult;
     res.locals.selectResult = selectResult;
     next();
-})
+});
 
 app.use("/function-relation",(req,res,next)=>{
     res.locals.crossResult = crossResult;
@@ -40,12 +41,13 @@ var permutationResult=combinationResult=arrangeResult =selectResult =   null;
 var crossResult  = relationResult =oneToOne =ontoResult =stirlingResult =eulaResult =  null;
 var catalanResult  = triangularResult =harmonicResult =fibonacciResult =lucasResult =  null;
 
-function factorial(n){
-    if(n==0 || n==1){
+// Index Route functions
+function factorial(N){
+    if(N==0 || N==1){
         return 1;
     }
     let fact = 1;
-    for(let i=1;i<=n;i++){
+    for(let i=1;i<=N;i++){
         fact*=i;
     }
     return fact;

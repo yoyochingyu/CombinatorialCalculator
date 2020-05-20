@@ -1,19 +1,23 @@
 <%-include("partials/header")%>
-    <h1 class="text-center mt-3">Combinatorial Calculator</h1>
     <form action="/" method="POST">
-        <div class="ml-3 mt-3">
+        <!-- <div class="ml-3 mt-3">
             <label for="inputN">N=</label>
-            <input id="inputN" type="number" name="input[N]" min="1" value="1" max ="170" required>
+            <input id="inputN" type="number" name="input[N]" min="1" value="1" max ="170" class="form-control" required>
             <label for="inputR">R=</label>
-            <input id="inputR" type="number" name="input[R]" min="0" max ="170" required>
-        </div>
+            <input id="inputR" type="number" name="input[R]" min="0" max ="170" class="form-control" required>
+        </div> -->
 
-        <div class="ml-3 mt-3">
-            <table class="table">
+        <div class="mx-auto" style="width: 90%;">
+            <table class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Formula</th>
-                        <th scope="col">Result</th>
+                        <th scope="col">
+                            <label for="inputN">N=</label>
+                            <input id="inputN" type="number" name="input[N]" min="1" value="1" max ="170" class="form-control" required>
+                            <label for="inputR">R=</label>
+                            <input id="inputR" type="number" name="input[R]" min="0" max ="170" class="form-control" required>
+                        </th>
                         <th scope="col">Button</th>
                         <th scope="col">Order relevant</th>
                         <th scope="col">Repetition</th>
@@ -28,6 +32,11 @@
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
+                         <td><button class="btn btn-secondary" type="submit">Permutation</button></td>
+                         <td>yes</td>
+                         <td>no</td>
+                         <td class="memo"># Permutations of size r from n distinct objects</td>
+
                     </tr>
                     <tr>
                         <th>C(n,r)</th>
@@ -36,6 +45,10 @@
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
+                         <td><button class="btn btn-secondary" type="submit">Combination</button></td>
+                         <td>no</td>
+                         <td>no</td>
+                         <td class="memo"># Selections/Combinations of size r from n distinct objects</td>
                     </tr>
                     <tr>
                         <th>n<sup>r</sup></th>
@@ -44,6 +57,10 @@
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
+                         <td><button class="btn btn-secondary" type="submit">Arrangement with repetition</button></td>
+                         <td>yes</td>
+                         <td>yes</td>
+                         <td class="memo"># Arrangements with repetition of size r from n distinct objects</td>
                     </tr>
                     <tr>
                         <th>C(r+n-1,r)</th>
@@ -52,6 +69,10 @@
                         <%}else{%>
                                 <td>...</td>
                          <%}%>
+                         <td><button class="btn btn-secondary" type="submit">Selection with repetition</button></td>
+                         <td>no</td>
+                         <td>yes</td>
+                         <td class="memo"># Selections with repetition of size r from n distinct objects</td>
                     </tr>
                 </tbody>
             </table>

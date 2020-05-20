@@ -1,3 +1,22 @@
 body{
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather', serif, 'Anton','Kaushan Script';
+    font-size: small;
+}
+
+.anchor{
+    color:black;
+    font-family: 'Kaushan Script';
+}
+.anchor:hover{
+    color:black;
+    text-decoration: none;
+}
+td{
+    text-align: center;
+}
+th{
+    text-align: center;
+}
+.memo{
+    text-align: left;
 }
