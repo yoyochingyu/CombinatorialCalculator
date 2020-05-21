@@ -25,15 +25,22 @@
                                 <div>
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="font-size: medium;"><b>[<%=i+1%>]  N=<%=historyResult.N%>,  R=<%=historyResult.R%></b></li>
-                                        <li class="list-group-item"><b>Permutation:</b><%=historyResult.permutationResult%></li>
-                                        <li class="list-group-item"><b>Combination:</b><%=historyResult.combinationResult%></li>
-                                        <li class="list-group-item"><b>Arrangement with repetition:</b><%=historyResult.arrangeResult%></li>
-                                        <li class="list-group-item"><b>Selection with repetition:</b><%=historyResult.selectResult%></li>
+                                            <%if(historyResult.R!=undefined){%>
+                                                <li class="list-group-item" style="font-size: medium;"><b>[<%=i+1%>]  N=<%=historyResult.N%>,  R=<%=historyResult.R%></b></li>
+                                                <li class="list-group-item"><b>Permutation:</b><%=historyResult.permutationResult%></li>
+                                                <li class="list-group-item"><b>Combination:</b><%=historyResult.combinationResult%></li>
+                                                <li class="list-group-item"><b>Arrangement with repetition:</b><%=historyResult.arrangeResult%></li>
+                                                <li class="list-group-item"><b>Selection with repetition:</b><%=historyResult.selectResult%></li>
+                                             <%} else if(historyResult.A!=undefined){%>
+                                                <li class="list-group-item" style="font-size: medium;"><b>[<%=i+1%>]  A=<%=historyResult.A%>,  B=<%=historyResult.B%></b></li>
+                                                <li class="list-group-item"><b>Cross:</b><%=historyResult.crossResult%></li>
+                                                <li class="list-group-item"><b>Relation:</b><%=historyResult.relationResult%></li>
+                                                <li class="list-group-item"><b>One to One:</b><%=historyResult.oneToOne%></li>
+                                                <li class="list-group-item"><b>Onto function:</b><%=historyResult.ontoResult%></li>
+                                                <li class="list-group-item"><b>Stirling Numbers of the second kind:</b><%=historyResult.stirlingResult%></li>
+                                                <li class="list-group-item"><b>Eularian Numbers:</b><%=historyResult.eulaResult%></li>
+                                            <%}%>
                                       </ul>
-                                    <!-- <form method="POST" action="/cart?_method=DELETE">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form> -->
                                     </div>
                                 </div>
                             </div>

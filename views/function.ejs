@@ -1,0 +1,99 @@
+<%-include("partials/header")%>
+    <form action="/function-relation" method="POST">
+        <div class="mx-auto" style="width: 90%;">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Formula</th>
+                        <th scope="col" width="20%">
+                            <div class="row">
+                                <label for="inputA" class="col-sm-2">|A|=m=</label>
+                                <input id="inputA" type="number" name="input[A]" min="0" class="form-control col-sm-4" style="height:1.5em" required>
+                                <label for="inputB" class="col-sm-2">|B|=n=</label>
+                                <input id="inputB" type="number" name="input[B]" min="0" class="form-control col-sm-4" style="height:1.5em" required>
+                            </div>
+                        </th>
+                        <th scope="col"><button class="btn btn-light btn-sm" type="submit" value="Submit" value="all" name="action" style="width:10em;">Compute all</button></th>
+                        <th scope="col">Order relevant</th>
+                        <th scope="col">Repetition</th>
+                        <th scope="col">Memo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>| A x B |</th>
+                        <%if(crossResult){%>
+                             <td><%=crossResult%></td>
+                        <%}else{%>
+                                <td></td>
+                         <%}%>
+                         <td><button class="btn btn-secondary btn-sm" type="submit" value="cross" name="action" style="width:10em;">Cross product</button></td>
+                         <td>yes</td>
+                         <td>no</td>
+                         <td class="memo"># Permutations of size r from n distinct objects</td>
+                    </tr>
+                    <tr>
+                        <th>Relation from A to B</th>
+                        <%if(relationResult){%>
+                             <td><%=relationResult%></td>
+                        <%}else{%>
+                                <td></td>
+                         <%}%>
+                         <td><button class="btn btn-secondary btn-sm" type="submit" value="relation" name="action" style="width:10em;">Relation from A to B</button></td>
+                         <td>no</td>
+                         <td>no</td>
+                         <td class="memo"># Selections/Combinations of size r from n distinct objects</td>
+                    </tr>
+                    <tr>
+                        <th>One to One</th>
+                        <%if(oneToOne!=null){%>
+                             <td><%=oneToOne%></td>
+                        <%}else{%>
+                                <td></td>
+                         <%}%>
+                         <td><button class="btn btn-secondary btn-sm" type="submit" value="oneToOne" name="action" style="width:10em;">One to One</button></td>
+                         <td>yes</td>
+                         <td>yes</td>
+                         <td class="memo"># Arrangements with repetition of size r from n distinct objects</td>
+                    </tr>
+                    <tr>
+                        <th>Onto functions</th>
+                        <%if(ontoResult!=null){%>
+                             <td><%=ontoResult%></td>
+                        <%}else{%>
+                                <td></td>
+                         <%}%>
+                         <td><button class="btn btn-secondary btn-sm" type="submit" value="onto" name="action" style="width:10em;">Onto functions</button></td>
+                         <td>no</td>
+                         <td>yes</td>
+                         <td class="memo"># Selections with repetition of size r from n distinct objects</td>
+                    </tr>
+                    <tr>
+                        <th>S(m,n)</th>
+                        <%if(stirlingResult!=null){%>
+                             <td><%=stirlingResult%></td>
+                        <%}else{%>
+                                <td></td>
+                         <%}%>
+                         <td><button class="btn btn-secondary btn-sm" type="submit" value="stirling" name="action" style="width:10em;">Stirling numbers of the second kind</button></td>
+                         <td>no</td>
+                         <td>yes</td>
+                         <td class="memo"># Selections with repetition of size r from n distinct objects</td>
+                    </tr>
+                    <tr>
+                        <th>Eulerian Number A(m,n)</th>
+                        <%if(eulaResult!=null){%>
+                             <td><%=eulaResult%></td>
+                        <%}else{%>
+                                <td></td>
+                         <%}%>
+                         <td><button class="btn btn-secondary btn-sm" type="submit" value="eula" name="action" style="width:10em;">Eulerian Number</button></td>
+                         <td>no</td>
+                         <td>yes</td>
+                         <td class="memo"># Selections with repetition of size r from n distinct objects</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+<%-include("partials/footer")%>

@@ -66,7 +66,6 @@ app.use("/numbers",(req,res,next)=>{
 })
 
 // variable setting
-var A,B;
 var permutationResult=combinationResult=arrangeResult =selectResult =   null;
 var crossResult  = relationResult =oneToOne =ontoResult =stirlingResult =eulaResult =  null;
 var catalanResult  = triangularResult =harmonicResult =fibonacciResult =lucasResult =  null;
@@ -192,17 +191,20 @@ function lucas(N){
     });
 
     app.get("/function-relation",(req,res)=>{
-        res.render("func");
+        res.render("function");
     });
 
     app.post("/function-relation",(req,res)=>{
-        A = parseInt(req.body.input.A);
-        B = parseInt(req.body.input.B);
+        let A = parseInt(req.body.input.A);
+        let B = parseInt(req.body.input.B);
+
+        // Compute
         crossResult = A*B;
         relationResult = Math.pow(2,A*B);
         if(A<B){
             oneToOne = permutation(B,A)
-            onto = 0;
+            ontoResult = 0;
+            stirlingResult=0;
         }
         else if(A>B){
             oneToOne = 0;
@@ -218,6 +220,47 @@ function lucas(N){
             eulaResult = eula(A,B);
         }else{
             eulaResult = 0;
+        }
+
+         // Set session
+         let historyResult = {
+            A:A,B:B,
+            crossResult:crossResult,
+            relationResult:relationResult,
+            oneToOne:oneToOne,
+            ontoResult:ontoResult,
+            stirlingResult:stirlingResult,
+            eulaResult: eulaResult};
+
+        if(req.session.history==undefined || req.session.history ==null){
+            req.session.history = new Array(historyResult);
+        }else{
+            req.session.history.push(historyResult);
+        }
+
+        // Display depends on button selected
+        if(req.body.action=='cross'){
+            relationResult =oneToOne =ontoResult =stirlingResult =eulaResult =  null;
+
+        }
+        else if(req.body.action=='relation'){
+            crossResult  =oneToOne =ontoResult =stirlingResult =eulaResult =  null;
+
+        }
+        else if(req.body.action=='oneToOne'){
+           crossResult  = relationResult =ontoResult =stirlingResult =eulaResult =  null;
+
+        }
+        else if(req.body.action=='onto'){
+            crossResult  = relationResult =oneToOne =stirlingResult =eulaResult =  null;
+
+        }
+        else if(req.body.action=='stirling'){
+            crossResult  = relationResult =oneToOne =ontoResult  =eulaResult =  null;
+
+        }
+        else if(req.body.action=='eula'){
+            crossResult  = relationResult =oneToOne =ontoResult =stirlingResult  =  null;
         }
 
         res.redirect("/function-relation");
@@ -238,6 +281,6 @@ function lucas(N){
     })
 
 
-    app.listen(8000,()=>{
+    app.listen(8080,()=>{
         console.log("Server has started!");
     });

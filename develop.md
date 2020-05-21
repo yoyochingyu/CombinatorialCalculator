@@ -12,6 +12,8 @@ C(n+r-1,r)輸入的n+r-1不能超過170
 --10. table內加上border--
 11. 加入landing page
 --12. 其他設null--
+13. func 的後面三行待改
+14. stirling是空的？eularian是分數？
 
 
 ### Feture
