@@ -35,7 +35,6 @@ app.use("/numbers",(req,res,next)=>{
 })
 
 // variable setting
-var N,R;
 var A,B;
 var permutationResult=combinationResult=arrangeResult =selectResult =   null;
 var crossResult  = relationResult =oneToOne =ontoResult =stirlingResult =eulaResult =  null;
@@ -122,12 +121,26 @@ function lucas(N){
     });
 
     app.post("/",(req,res)=>{
-        N = parseInt(req.body.input.N);
-        R = parseInt(req.body.input.R);
-        permutationResult = permutation(N,R);
-        combinationResult = combination(N,R);
-        arrangeResult = Math.pow(N,R);
-        selectResult = combination(N+R-1,R);
+        let N = parseInt(req.body.input.N);
+        let R = parseInt(req.body.input.R);
+        if(req.body.action=='permutation'){
+            permutationResult = permutation(N,R);
+        }
+        else if(req.body.action=='combination'){
+            combinationResult = combination(N,R);
+        }
+        else if(req.body.action=='arrange'){
+            arrangeResult = Math.pow(N,R);
+        }
+        else if(req.body.action=='select'){
+            selectResult = combination(N+R-1,R);
+        }
+        else{
+            permutationResult = permutation(N,R);
+            combinationResult = combination(N,R);
+            arrangeResult = Math.pow(N,R);
+            selectResult = combination(N+R-1,R);
+        }
         res.redirect("/");
     });
 
