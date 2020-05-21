@@ -39,6 +39,14 @@
                                                 <li class="list-group-item"><b>Onto function:</b><%=historyResult.ontoResult%></li>
                                                 <li class="list-group-item"><b>Stirling Numbers of the second kind:</b><%=historyResult.stirlingResult%></li>
                                                 <li class="list-group-item"><b>Eularian Numbers:</b><%=historyResult.eulaResult%></li>
+                                            <%} else{%>
+                                                <li class="list-group-item" style="font-size: medium;"><b>[<%=i+1%>]  N=<%=historyResult.N%></b></li>
+                                                <li class="list-group-item"><b>Catalan Numbers:</b><%=historyResult.catalanResult%></li>
+                                                <li class="list-group-item"><b>Triangular Numbers:</b><%=historyResult.triangularResult%></li>
+                                                <li class="list-group-item"><b>Harmonic Numbers:</b><%=historyResult.harmonicResult%></li>
+                                                <li class="list-group-item"><b>Fibonacci Numbers%:</b><%=historyResult.fibonacciResult%></li>
+                                                <li class="list-group-item"><b>Lucas Numbers:</b><%=historyResult.lucasResult%></li>
+                        
                                             <%}%>
                                       </ul>
                                     </div>

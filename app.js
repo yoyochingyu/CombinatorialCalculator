@@ -245,19 +245,15 @@ function lucas(N){
         }
         else if(req.body.action=='relation'){
             crossResult  =oneToOne =ontoResult =stirlingResult =eulaResult =  null;
-
         }
         else if(req.body.action=='oneToOne'){
            crossResult  = relationResult =ontoResult =stirlingResult =eulaResult =  null;
-
         }
         else if(req.body.action=='onto'){
             crossResult  = relationResult =oneToOne =stirlingResult =eulaResult =  null;
-
         }
         else if(req.body.action=='stirling'){
             crossResult  = relationResult =oneToOne =ontoResult  =eulaResult =  null;
-
         }
         else if(req.body.action=='eula'){
             crossResult  = relationResult =oneToOne =ontoResult =stirlingResult  =  null;
@@ -272,11 +268,45 @@ function lucas(N){
 
     app.post("/numbers",(req,res)=>{
         N = parseInt(req.body.input.N);
+
+        // Compute 
         catalanResult = combination(2*N,N)/(N+1);
         triangularResult = triangular(N);
         harmonicResult = harmonic(N);
         fibonacciResult = fibonacci(N);
         lucasResult = lucas(N);
+
+        // Set session
+        let historyResult = {
+            N:N,
+            catalanResult:catalanResult,
+            triangularResult:triangularResult,
+            harmonicResult:harmonicResult,
+            fibonacciResult:fibonacciResult,
+            lucasResult: lucasResult};
+
+        if(req.session.history==undefined || req.session.history ==null){
+            req.session.history = new Array(historyResult);
+        }else{
+            req.session.history.push(historyResult);
+        }
+
+        // Display depends on button selected
+        if(req.body.action=='catalan'){
+            triangularResult =harmonicResult =fibonacciResult =lucasResult =  null;
+        }
+        else if(req.body.action=='triangular'){
+            catalanResult  =harmonicResult =fibonacciResult =lucasResult =  null;
+        }
+        else if(req.body.action=='harmonic'){
+            catalanResult  = triangularResult  =fibonacciResult =lucasResult =  null;
+        }
+        else if(req.body.action=='fibonacci'){
+            catalanResult  = triangularResult =harmonicResult  =lucasResult =  null;
+        }
+        else if(req.body.action=='lucas'){
+            catalanResult  = triangularResult =harmonicResult =fibonacciResult =  null;
+        }
         res.redirect("/numbers");
     })
 
