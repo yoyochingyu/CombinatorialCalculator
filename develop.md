@@ -11,6 +11,7 @@ C(n+r-1,r)輸入的n+r-1不能超過170
 **9. 輸入其他input其他set null**
 --10. table內加上border--
 11. 加入landing page
+--12. 其他設null--
 
 
 ### Feture

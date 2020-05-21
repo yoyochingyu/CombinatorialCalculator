@@ -1,10 +1,41 @@
 const express = require("express"),
             app = express(),
-            bodyParser = require("body-parser");
+            bodyParser = require("body-parser"),
+            session = require("express-session"),
+            redis = require('redis'),
+            redisClient = redis.createClient(),
+            redisStore = require('connect-redis')(session);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.set("view engine","ejs");
+
+// Redis connection
+redisClient.on('connect',()=>{
+    console.log('Redis server has started!');
+  })
+  redisClient.on("error",(err)=>{
+    console.log(err);
+  });
+
+  // Session settings
+  app.use(session({
+    cookie:{maxAge:1000*60*60*24*3}, // 3 days
+    name:'calculatorCookie', 
+    resave:false,
+    saveUninitialized:false,
+    secret:'High pass for Discrete Mathematics!',
+    store: new redisStore({client:redisClient})
+  }));
+
+  app.use((req,res,next)=>{
+    if(req.session.history==undefined){
+        req.session.history=null;
+    }
+    res.locals.history = req.session.history;
+    next();
+  });
+
 
 // Pass varaibles into view(index)
 app.use("/",(req,res,next)=>{
@@ -123,23 +154,39 @@ function lucas(N){
     app.post("/",(req,res)=>{
         let N = parseInt(req.body.input.N);
         let R = parseInt(req.body.input.R);
+
+        // Compute
+        permutationResult = permutation(N,R);
+        combinationResult = combination(N,R);
+        arrangeResult = Math.pow(N,R);
+        selectResult = combination(N+R-1,R);
+        
+        // Set session
+        let historyResult = {
+            N:N,R:R,
+            permutationResult:permutationResult,
+            combinationResult:combinationResult,
+            arrangeResult:arrangeResult,
+            selectResult:selectResult};
+
+        if(req.session.history==undefined || req.session.history ==null){
+            req.session.history = new Array(historyResult);
+        }else{
+            req.session.history.push(historyResult);
+        }
+
+        // Display depends on button selected
         if(req.body.action=='permutation'){
-            permutationResult = permutation(N,R);
+            combinationResult=arrangeResult =selectResult =   null;
         }
         else if(req.body.action=='combination'){
-            combinationResult = combination(N,R);
+            permutationResult=arrangeResult =selectResult =   null;
         }
         else if(req.body.action=='arrange'){
-            arrangeResult = Math.pow(N,R);
+            permutationResult=combinationResult=selectResult =   null;
         }
         else if(req.body.action=='select'){
-            selectResult = combination(N+R-1,R);
-        }
-        else{
-            permutationResult = permutation(N,R);
-            combinationResult = combination(N,R);
-            arrangeResult = Math.pow(N,R);
-            selectResult = combination(N+R-1,R);
+            permutationResult=combinationResult=arrangeResult =   null;
         }
         res.redirect("/");
     });
