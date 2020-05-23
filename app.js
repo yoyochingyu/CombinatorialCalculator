@@ -147,10 +147,18 @@ function lucas(N){
 }
 
     app.get("/",(req,res)=>{
+        res.render("landing");
+    });
+
+    app.get("/about",(req,res)=>{
+        res.render("about");
+    })
+
+    app.get("/index",(req,res)=>{
         res.render("index");
     });
 
-    app.post("/",(req,res)=>{
+    app.post("/index",(req,res)=>{
         let N = parseInt(req.body.input.N);
         let R = parseInt(req.body.input.R);
 
@@ -187,7 +195,7 @@ function lucas(N){
         else if(req.body.action=='select'){
             permutationResult=combinationResult=arrangeResult =   null;
         }
-        res.redirect("/");
+        res.redirect("/index");
     });
 
     app.get("/function-relation",(req,res)=>{

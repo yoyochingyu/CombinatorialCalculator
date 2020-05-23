@@ -12,8 +12,6 @@
                             </div>
                         </th>
                         <th scope="col"><button class="btn btn-light btn-sm" type="submit" value="Submit" value="all" name="action" style="width:10em;">Compute all</button></th>
-                        <th scope="col">Order relevant</th>
-                        <th scope="col">Repetition</th>
                         <th scope="col">Memo</th>
                     </tr>
                 </thead>
@@ -26,9 +24,7 @@
                                 <td></td>
                          <%}%>
                          <td><button class="btn btn-secondary btn-sm" type="submit" value="catalan" name="action" style="width:10em;">Catalan</button></td>
-                         <td>yes</td>
-                         <td>no</td>
-                         <td class="memo"># Permutations of size r from n distinct objects</td>
+                         <td class="memo"># Equivalant to C(2n,n)/(n+1)</td>
                     </tr>
                     <tr>
                         <th>Triangular Numbers</th>
@@ -38,9 +34,7 @@
                                 <td></td>
                          <%}%>
                          <td><button class="btn btn-secondary btn-sm" type="submit" value="triangular" name="action" style="width:10em;">Triangular</button></td>
-                         <td>no</td>
-                         <td>no</td>
-                         <td class="memo"># Selections/Combinations of size r from n distinct objects</td>
+                         <td class="memo"># The n<sup>th</sup> triangular number is the number of dots in the triangular arrangement with n dots on a side</td>
                     </tr>
                     <tr>
                         <th>Harmonic Numbers</th>
@@ -50,9 +44,8 @@
                                 <td></td>
                          <%}%>
                          <td><button class="btn btn-secondary btn-sm" type="submit" value="harmonic" name="action" style="width:10em;">Harmonic</button></td>
-                         <td>yes</td>
-                         <td>yes</td>
-                         <td class="memo"># Arrangements with repetition of size r from n distinct objects</td>
+                         <td class="memo"># Each Harmonic number is the sum of the reciprocals of the first n natural numbers<br>
+                         <span style="text-decoration: underline;"><b># Restrictions : Start with H<sub>1</sub></b></span></td></td>
                     </tr>
                     <tr>
                         <th>Fibonacci Numbers</th>
@@ -62,9 +55,7 @@
                                 <td></td>
                          <%}%>
                          <td><button class="btn btn-secondary btn-sm" type="submit" value="fibonacci" name="action" style="width:10em;">Fibonacci</button></td>
-                         <td>no</td>
-                         <td>yes</td>
-                         <td class="memo"># Selections with repetition of size r from n distinct objects</td>
+                         <td class="memo"># Each Fibonacci number is the sum of the two previous terms</td>
                     </tr>
                     <tr>
                         <th>Lucas Numbers</th>
@@ -74,9 +65,7 @@
                                 <td></td>
                          <%}%>
                          <td><button class="btn btn-secondary btn-sm" type="submit" value="lucas" name="action" style="width:10em;">Lucas</button></td>
-                         <td>no</td>
-                         <td>yes</td>
-                         <td class="memo"># Selections with repetition of size r from n distinct objects</td>
+                         <td class="memo"># Each Lucas number is the sum of its two immediate previous terms</td>
                     </tr>
                 </tbody>
             </table>
